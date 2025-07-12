@@ -7,7 +7,7 @@
   "panels": [
     {
       "id": 1,
-      "title": "🚦 TRAFIC - Requests per Second",
+      "title": " TRAFIC - Requests per Second",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
       "targets": [
@@ -31,7 +31,7 @@
             "showPoints": "never",
             "pointSize": 5,
             "stacking": { "mode": "none", "group": "A" },
-            "axisLabel": "reqps",
+            "axisLabel": "req/s",
             "scaleDistribution": { "type": "linear" },
             "hideFrom": { "legend": false, "tooltip": false, "vis": false }
           },
@@ -42,7 +42,7 @@
     },
     {
       "id": 2,
-      "title": "LATENCE - Response Time (95th percentile)",
+      "title": " LATENCE - Response Time (95th percentile)",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
       "targets": [
@@ -154,7 +154,7 @@
     },
     {
       "id": 5,
-      "title": " LATENCE - Response Time Distribution",
+      "title": " LATENCE - Response Time Distribution (50th, 95th, 99th percentiles)",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 16 },
       "targets": [
@@ -199,29 +199,24 @@
     },
     {
       "id": 6,
-      "title": "SATURATION - Thread Pool & Connections",
+      "title": " SATURATION - Thread Pool & Connection Pools",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 12, "y": 16 },
       "targets": [
         {
-          "expr": "tomcat_threads_current",
-          "legendFormat": "Active Threads",
+          "expr": "jvm_threads_live_threads",
+          "legendFormat": "Live Threads",
           "refId": "A"
-        },
-        {
-          "expr": "tomcat_threads_config_max_threads",
-          "legendFormat": "Max Threads",
-          "refId": "B"
         },
         {
           "expr": "hikaricp_connections_active",
           "legendFormat": "Active DB Connections",
-          "refId": "C"
+          "refId": "B"
         },
         {
           "expr": "hikaricp_connections_max",
           "legendFormat": "Max DB Connections",
-          "refId": "D"
+          "refId": "C"
         }
       ],
       "fieldConfig": {
@@ -284,7 +279,7 @@
     },
     {
       "id": 8,
-      "title": "SATURATION - CPU & System Metrics",
+      "title": " SATURATION - CPU & System Metrics",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 12, "y": 24 },
       "targets": [
@@ -297,11 +292,6 @@
           "expr": "jvm_gc_pause_seconds_sum / jvm_gc_pause_seconds_count",
           "legendFormat": "Avg GC Pause Time",
           "refId": "B"
-        },
-        {
-          "expr": "jvm_gc_collection_seconds_sum",
-          "legendFormat": "Total GC Time",
-          "refId": "C"
         }
       ],
       "fieldConfig": {

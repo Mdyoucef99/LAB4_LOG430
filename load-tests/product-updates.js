@@ -14,12 +14,12 @@ export const options = {
 };
 
 export default function () {
+  // Lines 15-22: High-frequency product updates
   const productId = Math.floor(Math.random() * 100) + 1;
   const payload = JSON.stringify({
     nom: `Produit ${productId} - Updated`,
     prix: Math.random() * 100
   });
-  
   const response = http.put(`http://localhost:8080/api/v1/products/${productId}`, payload, {
     headers: { 'Content-Type': 'application/json' },
   });
