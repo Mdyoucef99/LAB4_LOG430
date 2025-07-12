@@ -7,7 +7,7 @@
   "panels": [
     {
       "id": 1,
-      "title": " TRAFIC - Requests per Second",
+      "title": "TRAFIC - Requests per Second",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
       "targets": [
