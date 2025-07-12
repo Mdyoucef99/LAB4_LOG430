@@ -8,6 +8,12 @@ import com.lab4.dao.SaleDao;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.sql.SQLException;
 import java.util.Map;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
@@ -15,6 +21,7 @@ import com.j256.ormlite.support.ConnectionSource;
 
 @RestController
 @RequestMapping("/api/v1/dashboard")
+@Tag(name = "Dashboard", description = "API pour les données du tableau de bord")
 public class DashboardRestController {
     private final DashboardController dashboardController;
 
@@ -36,6 +43,13 @@ public class DashboardRestController {
     }
 
     @GetMapping
+    @Operation(summary = "Récupérer les données du dashboard", description = "Retourne les statistiques consolidées du tableau de bord")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Données du dashboard récupérées avec succès",
+                    content = @Content(mediaType = "application/json", 
+                    schema = @Schema(description = "Map contenant les données du dashboard"))),
+        @ApiResponse(responseCode = "500", description = "Erreur interne du serveur")
+    })
     public ResponseEntity<Map<String, Object>> getDashboard() {
         try {
             Map<String, Object> dashboard = dashboardController.getDashboardData();

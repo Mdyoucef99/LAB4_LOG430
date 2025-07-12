@@ -1,8 +1,11 @@
 package com.lab4.Model;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "produits")
+@Schema(description = "Modèle représentant un produit")
 public class Produit {
 
     @DatabaseField(id = true)
