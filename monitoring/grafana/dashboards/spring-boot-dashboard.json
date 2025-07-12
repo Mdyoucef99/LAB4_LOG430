@@ -1,6 +1,7 @@
 {
   "dashboard": {
     "id": null,
+    "uid": "spring-boot-metrics",
     "title": "Spring Boot Metrics",
     "tags": ["spring-boot"],
     "timezone": "browser",
