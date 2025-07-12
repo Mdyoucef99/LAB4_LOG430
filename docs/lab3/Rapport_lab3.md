@@ -4,6 +4,12 @@
 
 # Rapport pour le LABO3 LOG430 :  
 
+Du a un probleme de sprint boot j'ai du changer le setup du LABO3 et en faisant cela il
+### Liens d'accès
+- **Swagger UI** : http://localhost:8080/swagger-ui.html
+- **Fichier YAML** : src/main/resources/static/swagger/swagger.yaml
+
+
 Voici la liste des principaux endpoints exposés par l'API du projet Lab 3.
 ---
 
