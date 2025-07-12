@@ -1,0 +1,61 @@
+@startuml
+
+skinparam linetype ortho
+
+left to right direction
+
+package "model" {
+  class Store
+  class Produit
+  class Stock
+  class Sale
+  class SaleReport
+}
+
+package "dao" {
+  class StoreDao
+  class ProduitDao
+  class StockDao
+  class SaleDao
+}
+
+package "service" {
+  class StockService
+  class CaisseService
+}
+
+package "controller" {
+  class StockController
+  class ReportController
+  class DashboardController
+}
+
+package "View" {
+  class App
+}
+
+App           --> CaisseService
+App           --> StockController
+App           --> ReportController
+App           --> DashboardController
+
+StockController --> StockService
+StockService    --> StockDao
+
+ReportController --> SaleDao
+ReportController --> StoreDao
+ReportController --> ProduitDao
+ReportController --> StockDao
+
+DashboardController --> SaleDao
+DashboardController --> StoreDao
+DashboardController --> ProduitDao
+DashboardController --> StockDao
+
+StoreDao     --> Store      
+ProduitDao   --> Produit    
+StockDao     --> Stock      
+SaleDao      --> Sale       
+SaleDao      --> SaleReport 
+
+@enduml

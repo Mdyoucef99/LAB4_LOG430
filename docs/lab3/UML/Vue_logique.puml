@@ -1,0 +1,128 @@
+@startuml
+
+skinparam linetype ortho
+left to right direction
+
+package "Model" {
+  
+  class Store {
+    + Store()
+    + Store(name: String)
+    + getId(): int
+    + getName(): String
+    + setName(name: String): void
+  }
+
+  class Produit {
+    + Produit()
+    + Produit(id: int, nom: String, categorie: String, prix: double, quantite: int)
+    + getId(): int
+    + getNom(): String
+    + getCategorie(): String
+    + getPrix(): double
+    + getQuantite(): int
+    + setQuantite(q: int): void
+    + toString(): String
+  }
+
+  class Stock {
+    + Stock()
+    + Stock(store: Store, produit: Produit, quantity: int)
+    + getStore(): Store
+    + getProduit(): Produit
+    + getQuantity(): int
+    + setQuantity(q: int): void
+  }
+
+  class Sale {
+    + Sale()
+    + Sale(store: Store, produit: Produit, quantity: int)
+    + getStore(): Store
+    + getProduit(): Produit
+    + getQuantity(): int
+    + getSaleDate(): Date
+  }
+
+  class SaleReport {
+    + SaleReport(storeName: String, productName: String, totalQty: long)
+    + getStoreName(): String
+    + getProductName(): String
+    + getTotalQty(): long
+  }
+}
+
+package "DAO" {
+  
+  class StoreDao {
+    + StoreDao(cs: ConnectionSource) throws SQLException
+    + listAll(): List<Store> throws SQLException
+    + findById(id: int): Store throws SQLException
+    + create(s: Store): void throws SQLException
+  }
+
+  class ProduitDao {
+    + ProduitDao(cs: ConnectionSource) throws SQLException
+    + getDao(): Dao<Produit,Integer>
+    + ajouterProduit(p: Produit): void throws SQLException
+    + rechercherParId(id: int): Produit throws SQLException
+    + rechercherParNom(n: String): List<Produit> throws SQLException
+    + enregistrerVente(id: int, q: int): void throws SQLException
+    + annulerVente(id: int, q: int): void throws SQLException
+    + getInventaire(): List<Produit> throws SQLException
+  }
+
+  class StockDao {
+    + StockDao(cs: ConnectionSource) throws SQLException
+    + getDao(): Dao<Stock,Void>
+    + getStock(store: Store, p: Produit): Stock throws SQLException
+    + updateQuantity(store: Store, p: Produit, delta: int): void throws SQLException
+    + listByStore(store: Store): List<Stock> throws SQLException
+    + getAll(): List<Stock> throws SQLException
+  }
+
+  class SaleDao {
+    + SaleDao(cs: ConnectionSource) throws SQLException
+    + getDao(): Dao<Sale,Integer>
+    + recordSale(store: Store, p: Produit, q: int): void throws SQLException
+    + consolidatedReport(storeDao: StoreDao, prodDao: ProduitDao): List<SaleReport> throws SQLException
+  }
+}
+
+
+package "Service" {
+
+  class StockService {
+    + StockService(stockDao: StockDao)
+    + reorder(central: Store, store: Store, p: Produit, quantity: int): void throws SQLException
+  }
+
+  class CaisseService {
+    + CaisseService(store: Store, produitDao: ProduitDao, stockDao: StockDao, saleDao: SaleDao)
+    + run(): void
+  }
+}
+
+package "View" {
+
+  class App {
+    + main(args: String[]): void
+  }
+}
+
+App               --> CaisseService
+App               --> StockService
+
+CaisseService     --> Store
+CaisseService     --> ProduitDao
+CaisseService     --> StockDao
+CaisseService     --> SaleDao
+
+StockService      --> StockDao
+
+StoreDao          --> Store
+ProduitDao        --> Produit
+StockDao          --> Stock
+SaleDao           --> Sale
+SaleDao           --> SaleReport
+
+@enduml

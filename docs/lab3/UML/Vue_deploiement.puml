@@ -1,0 +1,20 @@
+@startuml
+
+node "Docker Host" as Host {
+  folder "Docker Compose" {
+    node "API Container" as API {
+     
+    component "CaisseService"
+    component "Réapprovisionnement"
+    component "Génération de rapport"
+    
+    }
+    node "DB Container Postgres" as DB {
+      database "magasin"
+    }
+  }
+}
+
+API --> DB : JDBC
+
+@enduml

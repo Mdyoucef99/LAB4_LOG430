@@ -1,0 +1,41 @@
+@startuml Cas d'utilisation
+
+left to right direction
+
+actor Utilisateur
+actor Gestionnaire
+
+database  "Base de données" as DB
+
+package "POS" {
+  usecase "CU 1 : Rechercher produit" as U1
+  usecase "CU 2 : Enregistrer vente" as U2
+  usecase "CU 3 : Annuler vente" as U3
+  usecase "CU 4 : Consulter stock" as U4
+}
+
+package "Système de gestion" {
+  usecase "UC 1 : Générer rapport consolidé" as UC1
+  usecase "UC 2 : réapprovisionnement" as UC2
+  usecase "UC 3 : Visualiser performances des magasins" as UC3
+}
+
+Utilisateur --> U1
+Utilisateur --> U2
+Utilisateur --> U3
+Utilisateur --> U4
+
+U1 -- DB
+U2 -- DB
+U3 -- DB
+U4 -- DB
+
+UC1 -- DB
+UC2 -- DB
+UC3 -- DB
+
+Gestionnaire --> UC1
+Gestionnaire --> UC3
+Utilisateur --> UC2
+
+@enduml

@@ -1,0 +1,56 @@
+@startuml
+skinparam linetype ortho
+start
+:Lancer l'application;
+
+repeat
+    :Afficher le menu principal;
+    :Lire le choix utilisateur;
+
+    if (Choix = Caisse) then (oui)
+            :Choisir ID magasin ;
+        partition "Mode Caisse" {
+           
+            :Entrer en mode Caisse;
+            repeat
+                :Afficher le menu Caisse;
+                :Lire le choix Caisse;
+                if ("1: Rechercher" or 
+                    "2: Enregistrer vente" or
+                    "3: Annuler vente" or
+                    "4: Inventaire" or
+                    "0: Retour") then (1)
+                    :Rechercher et afficher produit;
+                elseif (2)
+                    :Enregistrer une vente;
+                elseif (3)
+                    :Enregistrer un retour;
+                elseif (4)
+                    :Afficher inventaire;
+                elseif (0)
+                    break
+                else
+                    :Choix invalide;
+                endif
+                
+            repeat while (true)
+        }
+
+    elseif (Choix = Logistique) then (oui)
+        partition "Mode Logistique" {
+                :Entrer en mode Logistique;
+                :Afficher le menu Logistique;
+                :Lire le choix Logistique;
+                :Demander ID produit, quantité et magasin cible;
+                :Exécuter réapprovisionnement;
+        }
+    elseif (Choix = Maison-Mère) then (oui)
+        :Afficher rapport consolidé et dashboard;
+    elseif (Choix = Quitter) then (oui)
+        stop
+    else
+        :Choix invalide;
+    endif
+
+repeat while (true)
+@enduml

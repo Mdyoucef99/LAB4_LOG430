@@ -1,4 +1,4 @@
-package Rest.config;
+package com.lab4.Rest.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
