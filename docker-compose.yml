@@ -13,7 +13,7 @@ services:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./db/local_backup.sql:/docker-entrypoint-initdb.d/local_backup.sql
     ports:
-      - "5432:5432"
+      - "5433:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U magasin_user -d magasin"]
       interval: 10s
