@@ -22,7 +22,17 @@
             "legendFormat": "{{method}} {{uri}}",
             "refId": "A"
           }
-        ]
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "displayMode": "auto"
+            }
+          }
+        }
       }
     ],
     "time": {
