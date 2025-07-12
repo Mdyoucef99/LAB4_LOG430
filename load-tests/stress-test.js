@@ -1,7 +1,7 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
-export const stressOptions = {
+export const options = {
   stages: [
     { duration: '2m', target: 10 },
     { duration: '2m', target: 50 },
