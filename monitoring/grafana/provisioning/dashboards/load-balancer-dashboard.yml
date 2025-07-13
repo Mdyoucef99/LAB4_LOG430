@@ -1,0 +1,12 @@
+apiVersion: 1
+
+providers:
+  - name: 'load-balancer-dashboards'
+    orgId: 1
+    folder: 'Load Balancer'
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /var/lib/grafana/dashboards 
