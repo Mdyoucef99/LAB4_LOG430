@@ -19,7 +19,7 @@ export const options = {
 };
 
 // Variables d'environnement
-const BASE_URL = __ENV.BASE_URL || 'http://localhost';
+const BASE_URL = __ENV.BASE_URL || 'http://localhost:8080';
 const ENDPOINT = __ENV.ENDPOINT || '/api/v1/stores/1/stock';
 
 export default function () {
