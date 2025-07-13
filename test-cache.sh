@@ -10,19 +10,47 @@ docker-compose up -d db redis api1 prometheus grafana
 echo "2. Attente du démarrage des services..."
 sleep 30
 
-# Test sans cache (première requête)
-echo "3. Test sans cache (première requête)..."
-curl -w "Temps: %{time_total}s\n" -o /dev/null -s http://localhost:8080/api/v1/stores/1/stock
+# Test des endpoints avec cache
+echo "3. Test des endpoints avec cache..."
 
-# Test avec cache (requêtes suivantes)
-echo "4. Test avec cache (requêtes suivantes)..."
-for i in {1..5}; do
+echo "Stock consultation (magasin 1):"
+for i in {1..3}; do
     echo "Requête $i:"
     curl -w "Temps: %{time_total}s\n" -o /dev/null -s http://localhost:8080/api/v1/stores/1/stock
 done
 
+echo ""
+echo "Reports generation:"
+for i in {1..3}; do
+    echo "Requête $i:"
+    curl -w "Temps: %{time_total}s\n" -o /dev/null -s http://localhost:8080/api/v1/reports/sales
+done
+
+echo ""
+echo "Product consultation (produit 1):"
+for i in {1..3}; do
+    echo "Requête $i:"
+    curl -w "Temps: %{time_total}s\n" -o /dev/null -s http://localhost:8080/api/v1/products/1
+done
+
+echo ""
+echo "Product consultation (produit 2):"
+for i in {1..3}; do
+    echo "Requête $i:"
+    curl -w "Temps: %{time_total}s\n" -o /dev/null -s http://localhost:8080/api/v1/products/2
+done
+
+echo ""
+echo "Product consultation (produit 3):"
+for i in {1..3}; do
+    echo "Requête $i:"
+    curl -w "Temps: %{time_total}s\n" -o /dev/null -s http://localhost:8080/api/v1/products/3
+done
+
 # Test de charge avec k6
-echo "5. Test de charge avec k6..."
+echo ""
+echo "4. Test de charge avec k6..."
 k6 run load-tests/load-balancer-test.js
 
-echo "=== Test terminé ===" 
+echo "=== Test terminé ==="
+echo "Consultez le dashboard: http://localhost:3000" 
