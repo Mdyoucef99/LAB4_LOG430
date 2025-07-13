@@ -7,7 +7,7 @@
   "panels": [
     {
       "id": 1,
-      "title": "📊 TRAFIC - Requests per Second (par instance)",
+      "title": " TRAFIC - Requests per Second (par instance)",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
       "targets": [
@@ -42,7 +42,7 @@
     },
     {
       "id": 2,
-      "title": "⚡ LATENCE - Response Time par instance (95th percentile)",
+      "title": " LATENCE - Response Time par instance (95th percentile)",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
       "targets": [
@@ -77,7 +77,7 @@
     },
     {
       "id": 3,
-      "title": "❌ ERREURS - Error Rate par instance",
+      "title": " ERREURS - Error Rate par instance",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
       "targets": [
@@ -113,7 +113,7 @@
     },
     {
       "id": 4,
-      "title": "💾 SATURATION - Memory Usage par instance",
+      "title": " SATURATION - Memory Usage par instance",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
       "targets": [
@@ -149,7 +149,7 @@
     },
     {
       "id": 5,
-      "title": "🔄 DISTRIBUTION - Requests par instance (Stacked)",
+      "title": " DISTRIBUTION - Requests par instance (Stacked)",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 16 },
       "targets": [
@@ -184,7 +184,7 @@
     },
     {
       "id": 6,
-      "title": "🔥 CPU Usage par instance",
+      "title": " CPU Usage par instance",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 12, "y": 16 },
       "targets": [
@@ -220,7 +220,7 @@
     },
     {
       "id": 7,
-      "title": "📈 TOTAL - Aggregated Performance",
+      "title": " TOTAL - Aggregated Performance",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 24 },
       "targets": [
@@ -260,7 +260,7 @@
     },
     {
       "id": 8,
-      "title": "⚖️ LOAD BALANCER - Distribution Efficiency",
+      "title": "LOAD BALANCER - Distribution Efficiency",
       "type": "stat",
       "gridPos": { "h": 8, "w": 12, "x": 12, "y": 24 },
       "targets": [
